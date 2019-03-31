@@ -1,14 +1,19 @@
 // Script:    TesteArvore.script
-// Autor:     Arndt von Staa
-// Data:      20/fev/2006
+// Autor:     Daniel Weil e Iago Farroco
+// Data:      31/mar/2019
 // Propósito: Ilustrar arquivo de script, 
 //            Testa a construção de uma árvore usando parâmetros literais
 //            Não verifica se as operações modificaram corretamente as referências
-//            Este script é muito superficial !!!
-//
 
-== Verificar assertivas de entrada de irdir
+
+== Verificar IrNoDireita sem árvore criada.
 =irdir      4
+
+== Verificar IrNoEsquerda sem árvore criada.
+=iresq      4
+
+== Verificar IrNoPai sem árvore criada.
+=irpai      4
 
 == Verificar comando recuperar
 =irdir      0
@@ -21,8 +26,27 @@
 =obter      '!'   1  
 =recuperar
 
+== Verificar DestroiArvore com árvore inexistente.
+=destruir
+
+==Verificar InserirEsquerda com Árvore inexistente.
+=insesq     'c' 0
+=destruir
+
+==Verificar InserirDireita com Árvore inexistente.
+=insdir     'c' 0
+=destruir
+
 == Criar árvore
 =criar      0   0
+
+== Verificar IrNoDireita sem criar Nó.
+=irdir      5
+
+== Verificar IrNoEsquerda sem criar Nó.
+=iresq      5
+
+== Verificar IrNoPai sem criar Nó.
 =irdir      5
 
 == Inserir à direita
@@ -35,8 +59,8 @@
 =obter      'x'   0
 =recuperar
 
-== Ir para no pai, nao tem
-=irpai      6
+== Verificar IrNoPai quando não é filho.
+=irdir      7
   
 == Inserir à esquerda
 =insesq     'b'   0
@@ -44,9 +68,16 @@
 == Obter o valor inserido
 =obter      'b'   0
 
+== Verificar controle de obter o valor inserido errado
+=obter      'c'   0
+=recuperar
+
 == Ir para no pai, tem
 =irpai      0
 =obter      'a'   0
+
+== Verificar InserirEsquerda quando já existir filho
+=insesq     'q' 3
 
 == Inserir à direita
 =insdir     'c'   0
@@ -60,18 +91,26 @@
 =irpai      6
 =obter      'a'   0
 
-== Ir para no esquerda tem
+== Verificar InserirDireita quando já existir filho
+=insdir     'q' 3
+
+== Ir para no esquerda, quando tiver
 =iresq      0
 =obter      'b'   0
 
-== Ir para no direita tem
+== Ir para no direita, quando tiver
 =irpai      0
 =irdir      0
 =obter      'c'   0
 
+== Verificar IrNoEsquerdo quando for folha.
+=iresq      7
+
+== Verificar IrNoDireito quando for folha.
+=irdir      7
+
 == Destroi a arvore
-=destruir   
-=irdir      4
+=destruir
 
 
 
